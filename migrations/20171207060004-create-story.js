@@ -14,9 +14,6 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      status: {
-        type: Sequelize.ENUM('planned', 'started', 'completed')
-      },
       dueDate: {
         type: Sequelize.DATE
       },
@@ -70,6 +67,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    })
+    .then(() => {
+      return queryInterface.sequelize.query("ALTER TABLE \"stories\" ADD COLUMN \"status\" \"enum_status\";")
     });
   },
   down: (queryInterface, Sequelize) => {

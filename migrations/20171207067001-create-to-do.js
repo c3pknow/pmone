@@ -17,9 +17,6 @@ module.exports = {
       dueDate: {
         type: Sequelize.DATE
       },
-      status: {
-        type: Sequelize.ENUM('planned', 'started', 'completed')
-      },
       createdBy: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
@@ -82,6 +79,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    })
+    .then(() => {
+      return queryInterface.sequelize.query("ALTER TABLE \"todos\" ADD COLUMN \"status\" \"enum_status\";")
     });
   },
   down: (queryInterface, Sequelize) => {

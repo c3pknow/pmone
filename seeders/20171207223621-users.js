@@ -20,7 +20,6 @@ module.exports = {
       email: 'demo@demo.com',
       password: 'abc123',
       dateRegistered: new Date(),
-      isLocked: false,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -31,7 +30,6 @@ module.exports = {
       email:'brianpino@gmail.com',
       password: 'abc123',
       dateRegistered: new Date(),
-      isLocked: false,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -42,7 +40,6 @@ module.exports = {
       email:'mc@gmail.com',
       password: 'abc123',
       dateRegistered: new Date(),
-      isLocked: false,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

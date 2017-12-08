@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Product = sequelize.define('Product', {
+  var Product = sequelize.define('product', {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     status: {
-      type: DataTypes.ENUM('planned', 'started', 'completed')
+      type: DataTypes.ENUM('under consideration', 'planned', 'started', 'completed')
     },
     dueDate: DataTypes.DATE,
     estimate: DataTypes.INTEGER,

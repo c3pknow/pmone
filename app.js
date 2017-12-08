@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const models = require('./models');
+var models = require('./models');
 
 
 //  SEQUELIZE
@@ -51,15 +51,31 @@ app.get('/', (req, res) => {
 
 
 models.sequelize.sync().then(() => {
+  console.log('Start Find...');
+ 
+  //  TODO: TEST DATA REMOVE
+  models.team.findAll().then( teams => {
+    console.log('TEAMS');
+    console.log(JSON.stringify(teams, null, 2));
+  });
 
-  models.Team.create({
-        name:'Brian Pino Inc'
-  });   
-  console.log(models.User);
-  console.log(models.Team);
+  models.user.findAll().then( users => {
+    console.log('USERS');
+    console.log(JSON.stringify(users, null, 2));
+  });
+
+  models.member.findAll().then( members => {
+    console.log('MEMBERS');
+    console.log(JSON.stringify(members, null, 2));
+  });
+ //  END TODO: TEST DATA REMOVE
+
   app.listen(3000);
   console.log('Running server on port 3000');
 });
+  
+  
+  
   
   
   

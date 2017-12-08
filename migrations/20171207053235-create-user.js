@@ -23,9 +23,6 @@ module.exports = {
       dateRegistered: {
         type: Sequelize.DATE
       },
-      isLocked: {
-        type: Sequelize.BOOLEAN
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

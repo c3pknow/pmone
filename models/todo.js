@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var ToDo = sequelize.define('ToDo', {
+  var ToDo = sequelize.define('todo', {
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
     dueDate: DataTypes.DATE,
     status: {
-      type: DataTypes.ENUM('planned', 'started', 'completed')
+      type: DataTypes.ENUM('under consideration', 'planned', 'started', 'completed')
     },
     createdBy: DataTypes.INTEGER
   }, {
