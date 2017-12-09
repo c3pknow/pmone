@@ -6,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 var models = require('./models');
-
+app.set('models', require('./models'));
+var dbs = require('./models/index');
 
 //  SEQUELIZE
 const db = require('./config/dev.js').db;
@@ -54,19 +55,46 @@ models.sequelize.sync().then(() => {
   console.log('Start Find...');
  
   //  TODO: TEST DATA REMOVE
-  models.team.findAll().then( teams => {
+  models.team.findAll({
+    include: [{ all: true, nested: true }],
+    //{
+    //   model: models.product,
+    //   include: {
+    //     model: models.epic,
+    //     include: {
+    //       model: models.feature,
+    //       include: {
+    //         model: models.story, 
+    //         include: {
+    //           model: models.task
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
+    where: {
+      id: 2
+    }
+  }).then( teams => {
     console.log('TEAMS');
-    console.log(JSON.stringify(teams, null, 2));
+    console.log(JSON.stringify(teams, null, 4));
   });
 
-  models.user.findAll().then( users => {
-    console.log('USERS');
-    console.log(JSON.stringify(users, null, 2));
-  });
-
+  
+  
   models.member.findAll().then( members => {
     console.log('MEMBERS');
     console.log(JSON.stringify(members, null, 2));
+  });
+
+
+  models.user.findAll({
+    where: {
+      id: 2
+    }
+  }).then( users => {
+    console.log('USERS');
+    console.log(JSON.stringify(users, null, 2));
   });
  //  END TODO: TEST DATA REMOVE
 

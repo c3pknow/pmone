@@ -13,20 +13,14 @@ module.exports = (sequelize, DataTypes) => {
    createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
-    },
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-        
-        User.belongsToMany(models.Team, {
+    }});
+    
+    User.associate = function (models) {
+        models.user.belongsToMany(models.team, {
           through: 'member',
           foreignKey: 'userId',
         })
-        
 
-      }
-    }
-  });
+  };
   return User;
 };

@@ -6,13 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.ENUM('read', 'edit', 'admin', 'owner', 'disabled')
     },
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-       
-      }
-    }
   });
   return Member;
 };

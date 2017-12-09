@@ -10,26 +10,22 @@ module.exports = (sequelize, DataTypes) => {
     estimate: DataTypes.INTEGER,
     priority: DataTypes.INTEGER,
     createdBy: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+  });
+  
+  Feature.associate = function (models) {
         
-        Feature.belongsTo(models.Product, {
+        models.feature.belongsTo(models.product, {
           foreignKey: 'productId'
         });
 
-        Feature.belongsTo(models.Epic, {
+        models.feature.belongsTo(models.epic, {
           foreignKey: 'epicId'
         });
         
-        Feature.hasMany(models.Story);
-        Feature.hasMany(models.Task);
-        Feature.hasMany(models.Comment);
-        Feature.hasMany(models.ToDo);
-        
-      }
-    }
-  });
+        models.feature.hasMany(models.story);
+        models.feature.hasMany(models.task);
+        models.feature.hasMany(models.comment);
+        models.feature.hasMany(models.todo);
+  };
   return Feature;
 };

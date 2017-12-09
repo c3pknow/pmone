@@ -1,4 +1,6 @@
 'use strict';
+//var models = require('../models');
+
 module.exports = (sequelize, DataTypes) => {
   var Product = sequelize.define('product', {
     name: DataTypes.STRING,
@@ -9,24 +11,24 @@ module.exports = (sequelize, DataTypes) => {
     dueDate: DataTypes.DATE,
     estimate: DataTypes.INTEGER,
     priority: DataTypes.INTEGER,
+    teamId: {
+      type: DataTypes.INTEGER,
+    },
     createdBy: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-
-        Product.belongTo(models.Team, {
-          foreignKey: 'teamId'
-        });
-
-        Product.hasMany(models.Epic);
-        Product.hasMany(models.Feature);
-        Product.hasMany(models.Story);
-        Product.hasMany(models.Task);
-        Product.hasMany(models.Comment);
-        Product.hasMany(models.ToDo);
-      }
-    }
   });
+  
+
+  Product.associate = function (models) {
+   
+    models.product.belongsTo(models.team, {
+      foreignKey: 'teamId'
+    });
+    models.product.hasMany(models.epic);
+    models.product.hasMany(models.feature);
+    models.product.hasMany(models.story);
+    models.product.hasMany(models.task);
+    models.product.hasMany(models.comment);
+    models.product.hasMany(models.todo);
+  };
   return Product;
 };

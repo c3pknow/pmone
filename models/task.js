@@ -10,31 +10,28 @@ module.exports = (sequelize, DataTypes) => {
     estimate: DataTypes.INTEGER,
     priority: DataTypes.INTEGER,
     createdBy: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+  });
 
-        Task.belongsTo(models.Product, {
+  Task.associate = function (models) {      
+
+        models.task.belongsTo(models.product, {
           foreignKey: 'productId'
         });
 
-        Task.belongsTo(models.Epic, {
+        models.task.belongsTo(models.epic, {
           foreignKey: 'epicId'
         });
         
-        Task.belongsTo(models.Feature, {
+        models.task.belongsTo(models.feature, {
           foreignKey: 'featureId'
         });
 
-        Task.belongsTo(models.Story, {
+        models.task.belongsTo(models.story, {
           foreignKey: 'storyId'
         });
 
-        Task.hasMany(models.Comment);
-        Task.hasMany(models.ToDo);
-      }
-    }
-  });
+        models.task.hasMany(models.comment);
+        models.task.hasMany(models.todo);
+  };
   return Task;
 };

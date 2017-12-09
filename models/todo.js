@@ -8,34 +8,29 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('under consideration', 'planned', 'started', 'completed')
     },
     createdBy: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+  });
 
-        ToDo.belongsTo(models.Task, {
+  ToDo.associate = function (models) {      
+
+        models.todo.belongsTo(models.task, {
           foreignKey: 'taskId'
         })
 
-        ToDo.belongsTo(models.Story, {
+        models.todo.belongsTo(models.story, {
           foreignKey: 'storyId'
         })
 
-        ToDo.belongsTo(models.Feature, {
+        models.todo.belongsTo(models.feature, {
           foreignKey: 'featureId'
         })
         
-        ToDo.belongsTo(models.Epic, {
+        models.todo.belongsTo(models.epic, {
           foreignKey: 'epicId'
         })
         
-        ToDo.belongsTo(models.Product, {
+        models.todo.belongsTo(models.product, {
           foreignKey: 'productId'
         })
-
-        
-      }
-    }
-  });
+  };
   return ToDo;
 };
