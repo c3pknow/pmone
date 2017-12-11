@@ -11,8 +11,7 @@ var dbs = require('./models/index');
 
 //  SEQUELIZE
 const db = require('./config/dev.js').db;
-const Sequelize = require('sequelize');
-
+var Sequelize = require('sequelize-hierarchy')();
 
 // // SEQUELIZE SETUP
 const sequelize = new Sequelize(db.URI, {
@@ -54,61 +53,61 @@ app.get('/', (req, res) => {
 models.sequelize.sync().then(() => {
   console.log('Start Find...');
  
+
+  //models.item.rebuildHierarchy();
+
   //  TODO: TEST DATA REMOVE
-  models.team.findAll({
-    include: [{ all: true, nested: true }],
-    //{
-    //   model: models.product,
-    //   include: {
-    //     model: models.epic,
-    //     include: {
-    //       model: models.feature,
-    //       include: {
-    //         model: models.story, 
-    //         include: {
-    //           model: models.task
-    //         }
-    //       }
-    //     }
+  // models.team.findAll({
+  //   include: //[{ all: true, nested: false }],
+  //   {
+  //     model: models.item,
+  //     hierarchy: true,
+  //     attributes: ['id', 'name', 'teamId', 'parentId', 'hierarchyLevel']
+  //   },
+  //   where: {
+  //     id: 2
+  //   },
+  //   attributes: ['id']
+  // }).then( teams => {
+  //   console.log('TEAMS');
+  //   console.log(JSON.stringify(teams, null, 4));
+  // });
+
+
+  models.item.findAll({
+        hierarchy: true,
+        attributes: ['id', 'name', 'teamId', 'parentId', 'hierarchyLevel']
+      })
+      .then( items => {
+        console.log('ITEMS');
+        console.log(JSON.stringify(items, null, 4));
+      })
+        .then(() => {
+          app.listen(3000);
+          console.log('Running server on port 3000');
+  });
+
+
+
+
+  
+  
+    // models.member.findAll().then( members => {
+    //   console.log('MEMBERS');
+    //   console.log(JSON.stringify(members, null, 2));
+    // });
+
+
+    // models.user.findAll({
+    //   where: {
+    //     id: 2
     //   }
-    // },
-    where: {
-      id: 2
-    }
-  }).then( teams => {
-    console.log('TEAMS');
-    console.log(JSON.stringify(teams, null, 4));
-  });
-
-  
-  
-  models.member.findAll().then( members => {
-    console.log('MEMBERS');
-    console.log(JSON.stringify(members, null, 2));
-  });
-
-
-  models.user.findAll({
-    where: {
-      id: 2
-    }
-  }).then( users => {
-    console.log('USERS');
-    console.log(JSON.stringify(users, null, 2));
-  });
+    // }).then( users => {
+    //   console.log('USERS');
+    //   console.log(JSON.stringify(users, null, 2));
+    // });
  //  END TODO: TEST DATA REMOVE
 
-  app.listen(3000);
-  console.log('Running server on port 3000');
+ 
 });
   
-  
-  
-  
-  
-  
-
-
-
-
-

@@ -38,42 +38,51 @@ module.exports = {
           key: 'id'
         }
       },
-      epicId: {
+       itemId: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         allowNull: true,
         references: {
-          model: 'epics',
+          model: 'items',
           key: 'id'
         }
       },
-      featureId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'features',
-          key: 'id'
-        }
-      },
-      storyId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'stories',
-          key: 'id'
-        }
-      },
-      taskId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'tasks',
-          key: 'id'
-        }
-      },
+      // epicId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: "CASCADE",
+      //   allowNull: true,
+      //   references: {
+      //     model: 'epics',
+      //     key: 'id'
+      //   }
+      // },
+      // featureId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: "CASCADE",
+      //   allowNull: true,
+      //   references: {
+      //     model: 'features',
+      //     key: 'id'
+      //   }
+      // },
+      // storyId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: "CASCADE",
+      //   allowNull: true,
+      //   references: {
+      //     model: 'stories',
+      //     key: 'id'
+      //   }
+      // },
+      // taskId: {
+      //   type: Sequelize.INTEGER,
+      //   onDelete: "CASCADE",
+      //   allowNull: true,
+      //   references: {
+      //     model: 'tasks',
+      //     key: 'id'
+      //   }
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

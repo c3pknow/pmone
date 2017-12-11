@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     models.product.belongsTo(models.team, {
       foreignKey: 'teamId'
     });
-    models.product.hasMany(models.epic);
-    models.product.hasMany(models.feature);
-    models.product.hasMany(models.story);
-    models.product.hasMany(models.task);
+    // models.product.hasMany(models.epic);
+    // models.product.hasMany(models.feature);
+    // models.product.hasMany(models.story);
+    // models.product.hasMany(models.task);
     models.product.hasMany(models.comment);
     models.product.hasMany(models.todo);
   };

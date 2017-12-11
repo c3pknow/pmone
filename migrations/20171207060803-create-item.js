@@ -1,12 +1,12 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('stories', {
+    return queryInterface.createTable('items', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       name: {
         type: Sequelize.STRING
@@ -14,13 +14,33 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      dueDate: {
-        type: Sequelize.DATE
-      },
       estimate: {
         type: Sequelize.INTEGER
       },
+      dueDate: {
+        type: Sequelize.DATE
+      },
       priority: {
+        type: Sequelize.INTEGER
+      },
+      teamId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: true,
+        references: {
+          model: 'teams',
+          key: 'id'
+        }
+      },
+      parentId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: 'items',
+          key: 'id'
+        }
+      },
+      hierarchyLevel: {
         type: Sequelize.INTEGER
       },
       createdBy: {
@@ -32,56 +52,31 @@ module.exports = {
           key: 'id'
         }
       },
-      teamtId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'teams',
-          key: 'id'
-        }
-      },
-      productId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'products',
-          key: 'id'
-        }
-      },
-      epicId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'epics',
-          key: 'id'
-        }
-      },
-      featureId: {
-        type: Sequelize.INTEGER,
-        onDelete: "CASCADE",
-        allowNull: true,
-        references: {
-          model: 'features',
-          key: 'id'
-        }
-      },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        default: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        default: Sequelize.NOW
       }
     })
     .then(() => {
-      return queryInterface.sequelize.query("ALTER TABLE \"stories\" ADD COLUMN \"status\" \"enum_status\";")
+      return queryInterface.sequelize.query("CREATE TYPE \"enum_type\" AS ENUM(\'product\', \'epic\', \'component\', \'feature\', \'story\', \'task\');")
+    })
+    .then(() => {
+      return queryInterface.sequelize.query("ALTER TABLE \"items\" ADD COLUMN \"type\" \"enum_type\";")
+    })
+    .then(() => {
+      return queryInterface.sequelize.query("ALTER TABLE \"items\" ADD COLUMN \"status\" \"enum_status\";")
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('stories');
+    return queryInterface.dropTable('items', {force:true})
+    .then(() => {
+      return queryInterface.sequelize.query("DROP TYPE \"enum_type\";");
+    });
   }
 };

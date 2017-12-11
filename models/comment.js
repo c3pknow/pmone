@@ -7,23 +7,27 @@ module.exports = (sequelize, DataTypes) => {
       associate: function(models) {
         // associations can be defined here
 
-        Comment.belongsTo(models.Task, {
-          foreignKey: 'taskId'
-        })
+        // Comment.belongsTo(models.Task, {
+        //   foreignKey: 'taskId'
+        // })
 
-        Comment.belongsTo(models.Story, {
-          foreignKey: 'storyId'
-        })
+        // Comment.belongsTo(models.Story, {
+        //   foreignKey: 'storyId'
+        // })
 
-        Comment.belongsTo(models.Feature, {
-          foreignKey: 'featureId'
+        // Comment.belongsTo(models.Feature, {
+        //   foreignKey: 'featureId'
+        // })
+        
+        // Comment.belongsTo(models.Epic, {
+        //   foreignKey: 'epicId'
+        // })
+
+        Comment.belongsTo(models.item, {
+          foreignKey: 'itemId'
         })
         
-        Comment.belongsTo(models.Epic, {
-          foreignKey: 'epicId'
-        })
-        
-        Comment.belongsTo(models.Product, {
+        Comment.belongsTo(models.product, {
           foreignKey: 'productId'
         })
       }

@@ -65,7 +65,7 @@ module.exports = {
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('products')
-    then(() => {
+    .then(() => {
       return queryInterface.sequelize.query("DROP TYPE \"enum_status\";")
     });
   }
