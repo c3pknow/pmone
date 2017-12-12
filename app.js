@@ -76,7 +76,12 @@ models.sequelize.sync().then(() => {
 
   models.item.findAll({
         hierarchy: true,
-        attributes: ['id', 'name', 'teamId', 'parentId', 'hierarchyLevel']
+        attributes: ['id', 'name', 'teamId', 'parentId', 'hierarchyLevel'],
+        include: [{
+          model: models.comment
+      },{
+        model: models.todo
+    }]
       })
       .then( items => {
         console.log('ITEMS');
