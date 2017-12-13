@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         models.user.belongsToMany(models.team, {
           through: 'member',
           foreignKey: 'userId',
+        });
+
+        models.user.hasMany(models.item, {
+          foreignKey: 'userId',
         })
 
   };
