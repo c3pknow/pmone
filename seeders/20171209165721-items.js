@@ -932,6 +932,7 @@ module.exports = {
       
       Suspendisse nec varius est, at accumsan neque. Sed blandit dapibus arcu, sit amet maximus augue congue et. Quisque aliquet metus quis faucibus pellentesque. Cras eget dictum purus. Fusce orci nisi, blandit ut mauris sed, molestie volutpat dolor. Praesent accumsan ultrices elit, non efficitur sapien sodales sit amet. Cras molestie aliquam metus. Vestibulum non eros ipsum. Vivamus at nisl non purus gravida sodales. Donec condimentum dignissim tellus egestas rutrum. Vivamus sagittis, est vitae varius pellentesque, felis nibh malesuada diam, in commodo lectus urna sed diam. Donec cursus id elit id tempor. Proin ornare eu dui et pellentesque. Nunc eget lacinia libero. Pellentesque scelerisque nec tortor ut iaculis. In a est sed elit facilisis mattis. `,
       status: 'under consideration',
+      type: 'task',
       dueDate: new Date(),
       estimate: 10,
       priority: 5,

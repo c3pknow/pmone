@@ -78,6 +78,9 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
+
+  
+
 ////  MODEL SYNC 
 models.sequelize.sync().then(() => {
   console.log('Models synchronized...');

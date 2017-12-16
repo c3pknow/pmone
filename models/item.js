@@ -32,9 +32,16 @@ module.exports = (sequelize, DataTypes) => {
 
   Item.associate = function (models) {
 
+    // models.item.belongsTo(models.item, {as: 'parent', foreignKey: 'parentId'})
+    // models.item.hasMany(models.item, {as: 'children', foreignKey: 'parentId'})
+    // models.item.belongsToMany(models.item, {as: 'descendents', foreignKey: 'ancestorId', through: itemAncestor})
+    // models.item.belongsToMany(models.item, {as: 'ancestors', foreignKey: 'folderId', through: itemAncestor})
+
+
     models.item.belongsTo(models.team, {
       foreignKey: 'teamId'
     });
+    
     models.item.belongsTo(models.user, {
       foreignKey: 'assignedTo'
     });
