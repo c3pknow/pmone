@@ -1,30 +1,29 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('user', {
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    
-    dateRegistered: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    },
-   createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW
-    }});
-    
-    User.associate = function (models) {
-        models.user.belongsToMany(models.team, {
-          through: 'member',
-          foreignKey: 'userId',
-        });
+module.exports = ( sequelize, DataTypes ) => {
+    const User = sequelize.define( "user", {
+        firstName: DataTypes.STRING,
+        lastName: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password: DataTypes.STRING,
 
-        models.user.hasMany(models.item, {
-          foreignKey: 'assignedTo',
-        })
+        dateRegistered: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+        },
+    } );
 
-  };
-  return User;
+    User.associate = function ( models ) {
+        models.user.belongsToMany( models.team, {
+            through: "member",
+            foreignKey: "userId",
+        } );
+
+        models.user.hasMany( models.item, {
+            foreignKey: "assignedTo",
+        } );
+    };
+    return User;
 };

@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+    up: ( queryInterface, Sequelize ) =>
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -13,37 +11,36 @@ module.exports = {
       }], {});
     */
 
-    return queryInterface.bulkInsert('teams', [{
-      id: 1,
-      name: 'Demo Inc',
-      createdBy: 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      id: 2,
-      name: 'Brians Awesome, Inc',
-      createdBy: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      id: 3,
-      name: 'Some other Inc',
-      createdBy: 3,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      id: 4,
-      name: 'Brians OTHER, Inc',
-      createdBy: 2,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {});
-  },
+        queryInterface.bulkInsert( "teams", [ {
+            id: 1,
+            name: "Demo Inc",
+            createdBy: 1,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 2,
+            name: "Brians Awesome, Inc",
+            createdBy: 2,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 3,
+            name: "Some other Inc",
+            createdBy: 3,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        },
+        {
+            id: 4,
+            name: "Brians OTHER, Inc",
+            createdBy: 2,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        } ], {} ),
 
-  down: (queryInterface, Sequelize) => {
+    down: ( queryInterface, Sequelize ) =>
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
@@ -52,6 +49,6 @@ module.exports = {
       return queryInterface.bulkDelete('Person', null, {});
     */
 
-    return queryInterface.bulkDelete('teams', null, {});
-  }
+        queryInterface.bulkDelete( "teams", null, {} ),
+
 };

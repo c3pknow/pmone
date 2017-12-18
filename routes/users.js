@@ -1,21 +1,18 @@
-var express = require('express');
-const router = express.Router({
-  mergeParams: true
-});
+const express = require( "express" );
 
-var UserController = require('../controllers/users');
+const router = express.Router( {
+    mergeParams: true,
+} );
 
-router.route('/')
-  .get(UserController.list_all_users)
-  .post(UserController.create_a_user)
+const UserController = require( "../controllers/users" );
 
-  router.route('/:userId')
-  .get(UserController.get_user_by_id)
-  .delete(UserController.delete_a_user)
-  .patch(UserController.update_a_user);
+router.route( "/" )
+    .get( UserController.list_all_users )
+    .post( UserController.create_a_user );
 
+router.route( "/:userId" )
+    .get( UserController.get_user_by_id )
+    .delete( UserController.delete_a_user )
+    .patch( UserController.update_a_user );
 
 module.exports = router;
-
-
-
