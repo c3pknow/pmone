@@ -20,5 +20,12 @@
     "sequelize": "^4.27.0",
     "sequelize-hierarchy": "github:deksden/sequelize-hierarchy",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }

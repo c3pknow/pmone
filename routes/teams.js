@@ -7,6 +7,9 @@ var TeamController = require('../controllers/teams');
 const products = require('./products');
 router.use('/:teamId/products', products);
 
+ ////  SETUP PRODUCT ROUTES
+const users = require('./users');
+router.use('/:teamId/users', users);
 
 ///////////////   TEAM ROUTES    ////////////////////////
 //

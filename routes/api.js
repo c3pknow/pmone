@@ -13,9 +13,7 @@ router.use(function(req, res, next) {
   // continue doing what we were doing and go to the route
   next(); 
 });
-////  SETUP API ROUTE
-const users = require('./users');
-router.use('/users', users);
+
 
 const teams = require('./teams');
 router.use('/teams', teams);

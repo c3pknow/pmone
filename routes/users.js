@@ -1,11 +1,19 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router({
+  mergeParams: true
+});
 
 var UserController = require('../controllers/users');
 
 router.route('/')
   .get(UserController.list_all_users)
-  .post(() =>{});
+  .post(UserController.create_a_user)
+
+  router.route('/:userId')
+  .get(UserController.get_user_by_id)
+  .delete(UserController.delete_a_user)
+  .patch(UserController.update_a_user);
+
 
 module.exports = router;
 
