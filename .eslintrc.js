@@ -32,9 +32,9 @@ module.exports = {
         "complexity": [ 1, 5 ],
         
         // react
-        "react/prefer-es6-class": 0,
-        "react/jsx-filename-extension": 0,
-        "react/jsx-curly-spacing": [ 2, "always" ],
-        "react/jsx-indent": [ 2, 4 ]
+        // "react/prefer-es6-class": 0,
+        // "react/jsx-filename-extension": 0,
+        // "react/jsx-curly-spacing": [ 2, "always" ],
+        // "react/jsx-indent": [ 2, 4 ]
 }
 };

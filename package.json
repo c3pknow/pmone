@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lint-fix": "eslint --ext .js --ignore-path .gitignore . --fix",
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -26,6 +29,8 @@
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0"
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1"
   }
 }
